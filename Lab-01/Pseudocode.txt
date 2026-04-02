@@ -1,0 +1,24 @@
+// Alex Warren
+// 1-28-2026
+// Pseudocode.txt
+
+// Program objective: Given an array of meeting time intervals, determine if a person could attend all meetings
+
+What we need to do:
+	Take input from the user
+		Take start time for meeting
+		Take end time for meeting
+		Sort so that start time is always lower than end time
+		Pass start and end times into an array
+		Add that array to a second array
+		Return the second array
+	Check if the intervals given overlap
+		For loop
+			Take the second element of the nth array, currentEnd
+			Compare it to the first element of the n+1th array, nextStart
+			If currentEnd > nextStart
+				return false
+		If the entire list is traversed without encountering a conflict, return true
+	Output result
+		If the check returned true, output "True."
+		Otherwise, output "False."
