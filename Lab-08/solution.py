@@ -68,3 +68,36 @@ def adjacency(times: List[List[int]]) -> Dict[int, List[Tuple[int, int]]]:
         adj[src].append((dest, time))
 
     return adj
+
+# Solution testing function
+def tests() :
+    # Test 1
+    times = [[2, 1, 1], [2, 3, 1], [3, 4, 1]]
+    n, k = 4, 2
+    processed = signal_times(times, n, k)
+    if processed == -1:
+        print("Signal doesn't reach all nodes")
+    else:
+        print(f"The signal can be processed in: {processed} units")
+
+    # Test 2
+    times = [[1, 2, 1]]
+    n, k = 2, 1
+    processed = signal_times(times, n, k)
+    if processed == -1:
+        print("Signal doesn't reach all nodes")
+    else:
+        print(f"The signal can be processed in: {processed} units")
+
+    # Test 3
+    times = [[1, 2, 1]]
+    n, k = 2, 2
+    processed = signal_times(times, n, k)
+    if processed == -1:
+        print("Signal doesn't reach all nodes")
+    else:
+        print(f"The signal can be processed in: {processed} units")
+
+
+if __name__ == "__main__":
+    tests()
