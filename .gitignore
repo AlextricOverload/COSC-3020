@@ -1,0 +1,13 @@
+# Explanation writer documents
+*.odt
+*.docx
+
+# Python artifacts
+__pycache__/
+*.pyc
+
+# LibreOffice / OpenOffice lock files
+.~lock.*#
+
+# Submission zip files
+*.zip
