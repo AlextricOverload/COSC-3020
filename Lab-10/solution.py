@@ -40,4 +40,8 @@ def remove_stones(stones):
 # Quick test
 if __name__ == "__main__":
     example_stones = [[0, 0], [0, 1], [1, 0], [1, 2], [2, 1], [2, 2]]
-    print(f"Max stones removed: {remove_stones(example_stones)}")  # Output: 5
+    print(f"Test 1: Max stones removed: {remove_stones(example_stones)}")  # Expected: 5
+    example_stones = [[0, 0], [0, 2], [1, 1], [2, 0], [2, 2]]
+    print(f"Test 2: Max stones removed: {remove_stones(example_stones)}")  # Expected: 3
+    example_stones = [[0, 0]]
+    print(f"Test 3: Max stones removed: {remove_stones(example_stones)}")  # Expected: 0
