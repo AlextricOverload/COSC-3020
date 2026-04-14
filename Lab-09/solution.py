@@ -1,3 +1,9 @@
+# solution.py
+# COSC 3020
+# Lab Practice 9
+# Author: Alexander Warren
+# Last Modified (YYYY-MM-DD): 2026-04-13
+
 def wiggle_sort(nums):
     """
     Reorders the array in-place using a greedy swapping method.
