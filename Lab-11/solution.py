@@ -22,7 +22,7 @@ def move(machines: List[int]) -> int:
     :param machines: A list representing the current number of dresses in each machine
     :return: The minimum moves required or -1 if equalization is impossible
     :Note: The complexity is O(n) as it requires a single pass. The logic uses a 'balance' accumulator
-    to track the net flow of dresses required across each point in the array.
+    to track how many dresses must pass between each machine.
     """
 
     n = len(machines)  # The number of washing machines
@@ -32,13 +32,13 @@ def move(machines: List[int]) -> int:
         return -1  # It's impossible to have all machines be equal
 
     target = sum(machines) // n  # The target value for all machines to reach
-    balance = 0  # The net flow of dresses that must pass through machine i and i+1 to reach equilibrium
+    balance = 0  # The number of dresses that must pass through machine i and i+1 to reach equilibrium
     max_moves = 0  # Return value: how many moves it takes to balance the machines
 
     for i in range(n):
         diff = machines[i] - target  # How many dresses this specific machine is above or below the target
         balance += diff
-        max_moves = max(max_moves, abs(balance), diff)  # The maximum of potential bottlenecks
+        max_moves = max(max_moves, abs(balance), diff)  # The maximum value
 
     return max_moves
 
