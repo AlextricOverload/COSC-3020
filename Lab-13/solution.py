@@ -2,7 +2,7 @@
 # COSC 3020
 # Lab Practice 13
 # Author: Alexander Warren
-# Last Modified (YYYY-MM-DD): 2026-05-11
+# Last Modified (YYYY-MM-DD): 2026-05-13
 
 """
 Lab Practice #13 — The Campus Cafe Problem
@@ -97,9 +97,6 @@ def build_tableau(c, A, b):
     return tableau
 
 
-# ---------------------------------------------------------------------------
-# TODO — Choose the pivot column (entering variable)
-# ---------------------------------------------------------------------------
 def simplex_pivot_column(tableau):
     """
     Find the entering variable: the column (among columns 1 .. n+m, excluding
@@ -116,13 +113,15 @@ def simplex_pivot_column(tableau):
     -------
     col : int   column index in the full tableau, or None if optimal
     """
-    # TODO: implement this function
-    pass
+    col = int(tableau[0, 1:-1])
+
+    max_val = np.max(col)
+    if max_val <= 0:
+        return None  # It's already optimal
+
+    return 1 + np.argmax(col)
 
 
-# ---------------------------------------------------------------------------
-# TODO — Choose the pivot row (leaving variable)
-# ---------------------------------------------------------------------------
 def simplex_pivot_row(tableau, col):
     """
     Find the leaving variable using the MINIMUM RATIO TEST.
@@ -143,8 +142,17 @@ def simplex_pivot_row(tableau, col):
     -------
     row : int   row index in the full tableau, or None if unbounded
     """
-    # TODO: implement this function
-    pass
+    min_ratio = np.inf
+    row = None
+    for i in range(1, tableau.shape[0]):
+        if tableau[i, col] <= 0:
+            continue
+        ratio = tableau[i, -1] / tableau[i, col]
+        if ratio < min_ratio:
+            min_ratio = ratio
+            row = i
+
+    return row
 
 
 # ---------------------------------------------------------------------------
