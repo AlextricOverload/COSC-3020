@@ -93,6 +93,7 @@ def build_tableau(c, A, b):
     #Constraint rows below
     tableau[1:, 1 : n + 1] = A  # Our constraint matrix
     tableau[1:, n+1 : n+1+m] = np.identity(m)  # Identity matrix
+    tableau[1:, -1] = b
 
     return tableau
 
@@ -113,7 +114,7 @@ def simplex_pivot_column(tableau):
     -------
     col : int   column index in the full tableau, or None if optimal
     """
-    col = int(tableau[0, 1:-1])
+    col = tableau[0, 1:-1]
 
     max_val = np.max(col)
     if max_val <= 0:
@@ -155,9 +156,6 @@ def simplex_pivot_row(tableau, col):
     return row
 
 
-# ---------------------------------------------------------------------------
-# TODO — Perform the Gauss-Jordan pivot
-# ---------------------------------------------------------------------------
 def simplex_pivot(tableau, row, col):
     """
     Perform one Gauss-Jordan elimination step (modify tableau IN PLACE):
@@ -172,8 +170,14 @@ def simplex_pivot(tableau, row, col):
     row     : int          pivot row index
     col     : int          pivot column index
     """
-    # TODO: implement this function
-    pass
+    pivot = tableau[row, col]
+    tableau[row] = tableau[row] / pivot
+
+    for i in range(tableau.shape[0]):
+        if i == row:
+            continue
+        factor = tableau[i, col]
+        tableau[i] = tableau[i] - factor * tableau[row]
 
 
 # ---------------------------------------------------------------------------
