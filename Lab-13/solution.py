@@ -49,9 +49,6 @@ import numpy as np
 from scipy.optimize import linprog   # used only for verification at the end
 
 
-# ---------------------------------------------------------------------------
-# TODO — Build the initial tableau
-# ---------------------------------------------------------------------------
 def build_tableau(c, A, b):
     """
     Build the initial simplex tableau for:
@@ -82,8 +79,22 @@ def build_tableau(c, A, b):
     -------
     tableau : np.ndarray, shape (m+1, n+m+2)
     """
-    # TODO: implement this function
-    pass
+    c = np.array(c, dtype=float)
+    A = np.array(A, dtype=float)
+    b = np.array(b, dtype=float)
+
+    m, n = A.shape
+    tableau = np.zeros((1+m, n+m+2))
+
+    # Objective row: row 0
+    tableau[0, 0] = 1  # z-col
+    tableau[0, 1 : n + 1] = c  # Decision vars
+
+    #Constraint rows below
+    tableau[1:, 1 : n + 1] = A  # Our constraint matrix
+    tableau[1:, n+1 : n+1+m] = np.identity(m)  # Identity matrix
+
+    return tableau
 
 
 # ---------------------------------------------------------------------------
